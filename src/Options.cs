@@ -7,46 +7,57 @@ namespace UnlockAllWondersAndLandmarks
 {
 
     [Flags]
-    public enum ModOptions : long
+    public enum ModOption : long
     {
         None = 0,
         UniqueBuildings = 1,
         DeluxeLandmarks = 2,
         EuroLandmarks = 4,
-        Wonders = 8
+        Wonders = 8,
+        AfterDarkLandmarks = 16
     }
 
-    public struct Options
+    public struct OptionsDTO
     {
         public bool unlockUniqueBuildings;
         public bool unlockDeluxeLandmarks;
         public bool unlockEuroLandmarks;
         public bool unlockWonders;
+        public bool unlockAfterDarkLandmarks;
+    }
+
+    public static class OptionsHolder
+    {
+        public static ModOption Options = ModOption.None;
     }
 
     public static class OptionsLoader
     {
+        public const string CONFIG_NAME = "CSL-UnlockAllWondersAndLandmarks.xml";
+
         public static void LoadOptions()
         {
-            UnlockAllWondersAndLandmarks.Options = ModOptions.None;
-            Options options;
+            OptionsHolder.Options = ModOption.None;
+            OptionsDTO options;
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Options));
-                using (StreamReader streamReader = new StreamReader("CSL-UnlockAllWondersAndLandmarks.xml"))
+                var xmlSerializer = new XmlSerializer(typeof(OptionsDTO));
+                using (var streamReader = new StreamReader(CONFIG_NAME))
                 {
-                    options = (Options)xmlSerializer.Deserialize(streamReader);
+                    options = (OptionsDTO)xmlSerializer.Deserialize(streamReader);
                 }
             }
             catch (FileNotFoundException)
             {
-                options = new Options
+                options = new OptionsDTO
                 {
                     unlockUniqueBuildings = true,
                     unlockDeluxeLandmarks = true,
                     unlockEuroLandmarks = true,
-                    unlockWonders = true
+                    unlockWonders = true,
+                    unlockAfterDarkLandmarks = false
                 };
+                SaveOptions(options);
                 // No options file yet
             }
             catch (Exception e)
@@ -55,42 +66,49 @@ namespace UnlockAllWondersAndLandmarks
                 return;
             }
             if (options.unlockUniqueBuildings)
-                UnlockAllWondersAndLandmarks.Options |= ModOptions.UniqueBuildings;
-
+                OptionsHolder.Options |= ModOption.UniqueBuildings;
             if (options.unlockDeluxeLandmarks)
-                UnlockAllWondersAndLandmarks.Options |= ModOptions.DeluxeLandmarks;
-
+                OptionsHolder.Options |= ModOption.DeluxeLandmarks;
             if (options.unlockEuroLandmarks)
-                UnlockAllWondersAndLandmarks.Options |= ModOptions.EuroLandmarks;
-
+                OptionsHolder.Options |= ModOption.EuroLandmarks;
             if (options.unlockWonders)
-                UnlockAllWondersAndLandmarks.Options |= ModOptions.Wonders;
+                OptionsHolder.Options |= ModOption.Wonders;
+            if (options.unlockAfterDarkLandmarks)
+                OptionsHolder.Options |= ModOption.AfterDarkLandmarks;
         }
 
         public static void SaveOptions()
         {
-            Options options = new Options();
-            if ((UnlockAllWondersAndLandmarks.Options & ModOptions.UniqueBuildings) != 0)
+            OptionsDTO options = new OptionsDTO();
+            if ((OptionsHolder.Options & ModOption.UniqueBuildings) != 0)
             {
                 options.unlockUniqueBuildings = true;
             }
-            if ((UnlockAllWondersAndLandmarks.Options & ModOptions.DeluxeLandmarks) != 0)
+            if ((OptionsHolder.Options & ModOption.DeluxeLandmarks) != 0)
             {
                 options.unlockDeluxeLandmarks = true;
             }
-            if ((UnlockAllWondersAndLandmarks.Options & ModOptions.EuroLandmarks) != 0)
+            if ((OptionsHolder.Options & ModOption.EuroLandmarks) != 0)
             {
                 options.unlockEuroLandmarks = true;
             }
-            if ((UnlockAllWondersAndLandmarks.Options & ModOptions.Wonders) != 0)
+            if ((OptionsHolder.Options & ModOption.Wonders) != 0)
             {
                 options.unlockWonders = true;
             }
+            if ((OptionsHolder.Options & ModOption.AfterDarkLandmarks) != 0)
+            {
+                options.unlockAfterDarkLandmarks = true;
+            }
+            SaveOptions(options);
+        }
 
+        public static void SaveOptions(OptionsDTO options)
+        {
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Options));
-                using (StreamWriter streamWriter = new StreamWriter("CSL-UnlockAllWondersAndLandmarks.xml"))
+                var xmlSerializer = new XmlSerializer(typeof(OptionsDTO));
+                using (var streamWriter = new StreamWriter(CONFIG_NAME))
                 {
                     xmlSerializer.Serialize(streamWriter, options);
                 }

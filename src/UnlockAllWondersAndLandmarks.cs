@@ -1,4 +1,6 @@
-﻿using ColossalFramework;
+﻿using System;
+using System.Collections.Generic;
+using ColossalFramework;
 using ICities;
 
 namespace UnlockAllWondersAndLandmarks
@@ -6,9 +8,6 @@ namespace UnlockAllWondersAndLandmarks
 
     public class UnlockAllWondersAndLandmarks : MilestonesExtensionBase, IUserMod
     {
-
-        public static ModOptions Options = ModOptions.None;
-
         public string Name
         {
             get
@@ -28,90 +27,107 @@ namespace UnlockAllWondersAndLandmarks
         public override void OnRefreshMilestones()
         {
             milestonesManager.UnlockMilestone("Basic Road Created");
-            if (Options.IsFlagSet(ModOptions.DeluxeLandmarks))
-            {
-                //Deluxe 
-                milestonesManager.UnlockMilestone("Eiffel Tower Requirements");
-                milestonesManager.UnlockMilestone("Statue of Liberty Requirements");
-                milestonesManager.UnlockMilestone("Grand Central Terminal Requirements");
-                milestonesManager.UnlockMilestone("Brandenburg Gate Requirements");
-                milestonesManager.UnlockMilestone("Arc de Triomphe Requirements");
-            }
+            UnlockBuidlingsIfFlagIsSet(ModOption.AfterDarkLandmarks, new[]{
+                //After Dark
+                "Fancy Fountain",               
+                "Casino",
+                "Driving Range",
+                "Luxury Hotel",
+                "Zoo",
+            });
+             
+            UnlockBuidlingsIfFlagIsSet(ModOption.DeluxeLandmarks, new[]{
+                //Deluxe
+                "Eiffel Tower",
+                "Statue of Liberty",
+                "Grand Central Terminal",
+                "Brandenburg Gate",
+                "Arc de Triomphe",
+            });
 
-            if (Options.IsFlagSet(ModOptions.Wonders))
-            {
+            UnlockBuidlingsIfFlagIsSet(ModOption.Wonders, new[]{
                 //Wonders
-                milestonesManager.UnlockMilestone("Hadron Collider Requirements");
-                milestonesManager.UnlockMilestone("Medical Center Requirements");
-                milestonesManager.UnlockMilestone("Space Elevator Requirements");
-                milestonesManager.UnlockMilestone("Eden Project Requirements");
-                milestonesManager.UnlockMilestone("Fusion Power Plant Requirements");
-            }
+                "Hadron Collider",
+                "Medical Center",
+                "Space Elevator",
+                "Eden Project",
+                "Fusion Power Plant",
+            });
 
-            if (Options.IsFlagSet(ModOptions.EuroLandmarks))
-            {
+            UnlockBuidlingsIfFlagIsSet(ModOption.EuroLandmarks, new[]{
                 //European
-                milestonesManager.UnlockMilestone("Arena Requirements");
-                milestonesManager.UnlockMilestone("Shopping Center Requirements");
-                milestonesManager.UnlockMilestone("Theatre Requirements");
-                milestonesManager.UnlockMilestone("London Eye Requirements");
-                milestonesManager.UnlockMilestone("Cinema Requirements");
-                milestonesManager.UnlockMilestone("City Hall Requirements");
-                milestonesManager.UnlockMilestone("Amsterdam Palace Requirements");
-                milestonesManager.UnlockMilestone("Cathedral Requirements");
-                milestonesManager.UnlockMilestone("Government Offices Requirements");
-                milestonesManager.UnlockMilestone("Hypermarket Requirements");
-                milestonesManager.UnlockMilestone("Department Store Requirements");
-                milestonesManager.UnlockMilestone("Gherkin Requirements");
-            }
+                "Arena",
+                "Shopping Center",
+                "Theatre",
+                "London Eye",
+                "Cinema",
+                "City Hall",
+                "Amsterdam Palace",
+                "Cathedral",
+                "Government Offices",
+                "Hypermarket",
+                "Department Store",
+                "Gherkin",
+            });
 
-            if (Options.IsFlagSet(ModOptions.UniqueBuildings))
-            {
+            UnlockBuidlingsIfFlagIsSet(ModOption.UniqueBuildings, new[]{
                 //UB-I
-                milestonesManager.UnlockMilestone("Statue of Industry Requirements");
-                milestonesManager.UnlockMilestone("Statue of Wealth Requirements");
-                milestonesManager.UnlockMilestone("Lazaret Plaza Requirements");
-                milestonesManager.UnlockMilestone("Statue of Shopping Requirements");
-                milestonesManager.UnlockMilestone("Plaza of the Dead Requirements");
-
+                "Statue of Industry",
+                "Statue of Wealth",
+                "Lazaret Plaza",
+                "Statue of Shopping",
+                "Plaza of the Dead",
                 //UB-II
-                milestonesManager.UnlockMilestone("Fountain of LifeDeath Requirements");
-                milestonesManager.UnlockMilestone("Friendly Neighborhood Requirements");
-                milestonesManager.UnlockMilestone("Transport Tower Requirements");
-                milestonesManager.UnlockMilestone("Trash Mall Requirements");
-                milestonesManager.UnlockMilestone("Posh Mall Requirements");
+                "Fountain of LifeDeath",
+                "Friendly Neighborhood",
+                "Transport Tower",
+                "Trash Mall",
+                "Posh Mall",
                 //UB-III
-                milestonesManager.UnlockMilestone("Colossal Offices Requirements");
-                milestonesManager.UnlockMilestone("Official Park Requirements");
-                milestonesManager.UnlockMilestone("CourtHouse Requirements");
-                milestonesManager.UnlockMilestone("Grand Mall Requirements");
-                milestonesManager.UnlockMilestone("Cityhall Requirements");
+                "Colossal Offices",
+                "Official Park",
+                "CourtHouse",
+                "Grand Mall",
+                "Cityhall",
                 //UB-IV
-                milestonesManager.UnlockMilestone("Business Park Requirements");
-                milestonesManager.UnlockMilestone("Library Requirements");
-                milestonesManager.UnlockMilestone("Observatory Requirements");
-                milestonesManager.UnlockMilestone("Opera House Requirements");
-                milestonesManager.UnlockMilestone("Oppression Office Requirements");
-
+                "Business Park",
+                "Library",
+                "Observatory",
+                "Opera House",
+                "Oppression Office",
                 //UB-V
-                milestonesManager.UnlockMilestone("ScienceCenter Requirements");
-                milestonesManager.UnlockMilestone("Servicing Services Requirements");
-                milestonesManager.UnlockMilestone("SeaWorld Requirements");
-                milestonesManager.UnlockMilestone("Expocenter Requirements");
-                milestonesManager.UnlockMilestone("High Interest Tower Requirements");
-
+                "ScienceCenter",
+                "Servicing Services",
+                "SeaWorld",
+                "Expocenter",
+                "High Interest Tower",
                 //UB-VI
-                milestonesManager.UnlockMilestone("Cathedral of Plentitude Requirements");
-                milestonesManager.UnlockMilestone("Stadium Requirements");
-                milestonesManager.UnlockMilestone("Modern Art Museum Requirements");
-                milestonesManager.UnlockMilestone("SeaAndSky Scraper Requirements");
-                milestonesManager.UnlockMilestone("Theater of Wonders Requirements");
-            }
+                "Cathedral of Plentitude",
+                "Stadium",
+                "Modern Art Museum",
+                "SeaAndSky Scraper",
+                "Theater of Wonders",
+            });
 
         }
 
+        private void UnlockBuidlingsIfFlagIsSet(ModOption flag, IEnumerable<string> buildingNames)
+        {
+            if (!OptionsHolder.Options.IsFlagSet(flag))
+            {
+                return;
+            }
+            foreach (var buildingName in buildingNames)
+            {
+                UnlockBuilding(buildingName);
+            }
+        }
 
 
+        private void UnlockBuilding(string buildingName)
+        {
+            milestonesManager.UnlockMilestone(String.Format("{0} Requirements", buildingName));
+        }
 
         public override int OnGetPopulationTarget(int originalTarget, int scaledTarget)
         {
@@ -121,56 +137,26 @@ namespace UnlockAllWondersAndLandmarks
         public void OnSettingsUI(UIHelperBase helper)
         {
             OptionsLoader.LoadOptions();
-            UIHelperBase group = helper.AddGroup("Unlock All + Wonders & Landmarks Options");
-            group.AddCheckbox("Unlock Unique Buildings (levels I-VI)", (Options & ModOptions.UniqueBuildings) != 0,
-                (b) =>
+            var group = helper.AddGroup("Unlock All + Wonders & Landmarks Options");
+            AddCheckbox("Unlock Unique Buildings (levels I-VI)", ModOption.UniqueBuildings, group);
+            AddCheckbox("Unlock Deluxe Landmarks (req. Deluxe Edition)", ModOption.DeluxeLandmarks, group);
+            AddCheckbox("Unlock European Landmarks (req. European biome or European Buildings Unlocker mod)", ModOption.EuroLandmarks, group);
+            AddCheckbox("Unlock Wonders (a.k.a Monuments)", ModOption.Wonders, group);
+            AddCheckbox("Unlock After Dark Landmarks", ModOption.AfterDarkLandmarks, group);
+        }
+
+        private static void AddCheckbox(string text, ModOption flag, UIHelperBase group)
+        {
+            group.AddCheckbox(text, OptionsHolder.Options.IsFlagSet(flag),
+                b =>
                 {
                     if (b)
                     {
-                        Options |= ModOptions.UniqueBuildings;
+                        OptionsHolder.Options |= flag;
                     }
                     else
                     {
-                        Options &= ~ModOptions.UniqueBuildings;
-                    }
-                    OptionsLoader.SaveOptions();
-                });
-            group.AddCheckbox("Unlock Deluxe Landmarks (req. Deluxe Edition)", (Options & ModOptions.DeluxeLandmarks) != 0,
-                (b) =>
-                {
-                    if (b)
-                    {
-                        Options |= ModOptions.DeluxeLandmarks;
-                    }
-                    else
-                    {
-                        Options &= ~ModOptions.DeluxeLandmarks;
-                    }
-                    OptionsLoader.SaveOptions();
-                });
-            group.AddCheckbox("Unlock European Landmarks (req. European biome or European Buildings Unlocker mod)", (Options & ModOptions.EuroLandmarks) != 0,
-                (b) =>
-                {
-                    if (b)
-                    {
-                        Options |= ModOptions.EuroLandmarks;
-                    }
-                    else
-                    {
-                        Options &= ~ModOptions.EuroLandmarks;
-                    }
-                    OptionsLoader.SaveOptions();
-                });
-            group.AddCheckbox("Unlock Wonders (a.k.a Monuments)", (Options & ModOptions.Wonders) != 0,
-                (b) =>
-                {
-                    if (b)
-                    {
-                        Options |= ModOptions.Wonders;
-                    }
-                    else
-                    {
-                        Options &= ~ModOptions.Wonders;
+                        OptionsHolder.Options &= ~flag;
                     }
                     OptionsLoader.SaveOptions();
                 });
