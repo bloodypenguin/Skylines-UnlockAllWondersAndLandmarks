@@ -142,7 +142,7 @@ namespace UnlockAllWondersAndLandmarks
             AddCheckbox("Unlock Deluxe Landmarks (req. Deluxe Edition)", ModOption.DeluxeLandmarks, group);
             AddCheckbox("Unlock European Landmarks (req. European biome or European Buildings Unlocker mod)", ModOption.EuroLandmarks, group);
             AddCheckbox("Unlock Wonders (a.k.a Monuments)", ModOption.Wonders, group);
-            AddCheckbox("Unlock After Dark Landmarks", ModOption.AfterDarkLandmarks, group);
+            AddCheckbox("Unlock After Dark Landmarks (a.k.a Tourism & Leisure, req. After Dark DLC)", ModOption.AfterDarkLandmarks, group);
         }
 
         private static void AddCheckbox(string text, ModOption flag, UIHelperBase group)
