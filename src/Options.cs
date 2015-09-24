@@ -17,7 +17,7 @@ namespace UnlockAllWondersAndLandmarks
         AfterDarkLandmarks = 16
     }
 
-    public struct OptionsDTO
+    public struct Options
     {
         public bool unlockUniqueBuildings;
         public bool unlockDeluxeLandmarks;
@@ -38,18 +38,18 @@ namespace UnlockAllWondersAndLandmarks
         public static void LoadOptions()
         {
             OptionsHolder.Options = ModOption.None;
-            OptionsDTO options;
+            Options options;
             try
             {
-                var xmlSerializer = new XmlSerializer(typeof(OptionsDTO));
+                var xmlSerializer = new XmlSerializer(typeof(Options));
                 using (var streamReader = new StreamReader(CONFIG_NAME))
                 {
-                    options = (OptionsDTO)xmlSerializer.Deserialize(streamReader);
+                    options = (Options)xmlSerializer.Deserialize(streamReader);
                 }
             }
             catch (FileNotFoundException)
             {
-                options = new OptionsDTO
+                options = new Options
                 {
                     unlockUniqueBuildings = true,
                     unlockDeluxeLandmarks = true,
@@ -79,7 +79,7 @@ namespace UnlockAllWondersAndLandmarks
 
         public static void SaveOptions()
         {
-            OptionsDTO options = new OptionsDTO();
+            Options options = new Options();
             if ((OptionsHolder.Options & ModOption.UniqueBuildings) != 0)
             {
                 options.unlockUniqueBuildings = true;
@@ -103,11 +103,11 @@ namespace UnlockAllWondersAndLandmarks
             SaveOptions(options);
         }
 
-        public static void SaveOptions(OptionsDTO options)
+        public static void SaveOptions(Options options)
         {
             try
             {
-                var xmlSerializer = new XmlSerializer(typeof(OptionsDTO));
+                var xmlSerializer = new XmlSerializer(typeof(Options));
                 using (var streamWriter = new StreamWriter(CONFIG_NAME))
                 {
                     xmlSerializer.Serialize(streamWriter, options);
