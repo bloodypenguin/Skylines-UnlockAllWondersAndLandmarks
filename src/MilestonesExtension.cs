@@ -1,42 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using ColossalFramework;
+﻿using System.Collections.Generic;
 using ICities;
+using UnlockAllWondersAndLandmarks.OptionsFramework;
 
 namespace UnlockAllWondersAndLandmarks
 {
-
-    public class UnlockAllWondersAndLandmarks : MilestonesExtensionBase, IUserMod
+    public class MilestonesExtension : MilestonesExtensionBase
     {
-        public string Name
-        {
-            get
-            {
-                OptionsLoader.LoadOptions();
-                return "Unlock All + Wonders & Landmarks";
-            }
-        }
-
-        public string Description
-        {
-            get { return "Unlock all + Wonders & Landmarks from beginning"; }
-        }
-
-
-
         public override void OnRefreshMilestones()
         {
             milestonesManager.UnlockMilestone("Basic Road Created");
-            UnlockBuidlingsIfFlagIsSet(ModOption.AfterDarkLandmarks, new[]{
+
+            UnlockBuidlingsIfFlagIsSet("unlockSnowfallLandmarks", new[]{
+                //Snowfall
+                "Ice Hockey Arena",
+                "Sleigh Ride",
+                "Spa Hotel",
+                "Snowcastle Restaurant",
+                "Ski Resort",
+                "Santa Claus Workshop",
+                "Christmas Tree",
+                "Arena",
+                "Driving Range",
+                "Igloo Hotel",
+            });
+
+            UnlockBuidlingsIfFlagIsSet("unlockAfterDarkLandmarks", new[]{
                 //After Dark
-                "Fancy Fountain",               
+                "Fancy Fountain",
                 "Casino",
                 "Driving Range",
                 "Luxury Hotel",
                 "Zoo",
             });
-             
-            UnlockBuidlingsIfFlagIsSet(ModOption.DeluxeLandmarks, new[]{
+
+            UnlockBuidlingsIfFlagIsSet("unlockDeluxeLandmarks", new[]{
                 //Deluxe
                 "Eiffel Tower",
                 "Statue of Liberty",
@@ -45,7 +42,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Arc de Triomphe",
             });
 
-            UnlockBuidlingsIfFlagIsSet(ModOption.Wonders, new[]{
+            UnlockBuidlingsIfFlagIsSet("unlockWonders", new[]{
                 //Wonders
                 "Hadron Collider",
                 "Medical Center",
@@ -54,7 +51,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Fusion Power Plant",
             });
 
-            UnlockBuidlingsIfFlagIsSet(ModOption.EuroLandmarks, new[]{
+            UnlockBuidlingsIfFlagIsSet("unlockEuroLandmarks", new[]{
                 //European
                 "Arena",
                 "Shopping Center",
@@ -70,7 +67,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Gherkin",
             });
 
-            UnlockBuidlingsIfFlagIsSet(ModOption.UniqueBuildings, new[]{
+            UnlockBuidlingsIfFlagIsSet("unlockUniqueBuildings", new[]{
                 //UB-I
                 "Statue of Industry",
                 "Statue of Wealth",
@@ -108,12 +105,11 @@ namespace UnlockAllWondersAndLandmarks
                 "SeaAndSky Scraper",
                 "Theater of Wonders",
             });
-
         }
 
-        private void UnlockBuidlingsIfFlagIsSet(ModOption flag, IEnumerable<string> buildingNames)
+        private void UnlockBuidlingsIfFlagIsSet(string flag, IEnumerable<string> buildingNames)
         {
-            if (!OptionsHolder.Options.IsFlagSet(flag))
+            if (!(bool)typeof(Options).GetProperty(flag).GetValue(OptionsWrapper<Options>.Options, null))
             {
                 return;
             }
@@ -126,40 +122,12 @@ namespace UnlockAllWondersAndLandmarks
 
         private void UnlockBuilding(string buildingName)
         {
-            milestonesManager.UnlockMilestone(String.Format("{0} Requirements", buildingName));
+            milestonesManager.UnlockMilestone($"{buildingName} Requirements");
         }
 
         public override int OnGetPopulationTarget(int originalTarget, int scaledTarget)
         {
             return 0;
-        }
-
-        public void OnSettingsUI(UIHelperBase helper)
-        {
-            OptionsLoader.LoadOptions();
-            var group = helper.AddGroup("Unlock All + Wonders & Landmarks Options");
-            AddCheckbox("Unlock Unique Buildings (levels I-VI)", ModOption.UniqueBuildings, group);
-            AddCheckbox("Unlock Deluxe Landmarks (req. Deluxe Edition)", ModOption.DeluxeLandmarks, group);
-            AddCheckbox("Unlock European Landmarks (req. European biome or European Buildings Unlocker mod)", ModOption.EuroLandmarks, group);
-            AddCheckbox("Unlock Wonders (a.k.a Monuments)", ModOption.Wonders, group);
-            AddCheckbox("Unlock After Dark Landmarks (a.k.a Tourism & Leisure, req. After Dark DLC)", ModOption.AfterDarkLandmarks, group);
-        }
-
-        private static void AddCheckbox(string text, ModOption flag, UIHelperBase group)
-        {
-            group.AddCheckbox(text, OptionsHolder.Options.IsFlagSet(flag),
-                b =>
-                {
-                    if (b)
-                    {
-                        OptionsHolder.Options |= flag;
-                    }
-                    else
-                    {
-                        OptionsHolder.Options &= ~flag;
-                    }
-                    OptionsLoader.SaveOptions();
-                });
         }
     }
 }
