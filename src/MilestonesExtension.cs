@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ICities;
 using UnlockAllWondersAndLandmarks.OptionsFramework;
 
@@ -134,7 +135,12 @@ namespace UnlockAllWondersAndLandmarks
 
         private void UnlockBuilding(string buildingName)
         {
-            milestonesManager.UnlockMilestone($"{buildingName} Requirements");
+            var milestone = $"{buildingName} Requirements";
+
+            if (milestonesManager.EnumerateMilestones().Contains(milestone))
+            {
+                milestonesManager.UnlockMilestone(milestone);
+            }
         }
 
         public override int OnGetPopulationTarget(int originalTarget, int scaledTarget)
