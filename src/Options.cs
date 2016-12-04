@@ -13,6 +13,7 @@ namespace UnlockAllWondersAndLandmarks
             unlockWonders = true;
             unlockAfterDarkLandmarks = false;
             unlockSnowfallLandmarks = false;
+            unlockNaturalDisastersLandmarks = false;
         }
 
         [Checkbox("Unlock Unique Buildings(levels I - VI)")]
@@ -27,6 +28,9 @@ namespace UnlockAllWondersAndLandmarks
         public bool unlockAfterDarkLandmarks { set; get; }
         [Checkbox("Unlock Snowfall Landmarks (req. Snowfall DLC + Winter biome/Winter Buildings Unlocker mod)")]
         public bool unlockSnowfallLandmarks { set; get; }
+
+        [Checkbox("Unlock Natural Disasters Landmarks (req. Natural Disasters DLC)")]
+        public bool unlockNaturalDisastersLandmarks { set; get; }
 
         [XmlIgnore]
         public string FileName => "CSL-UnlockAllWondersAndLandmarks.xml";

@@ -10,6 +10,18 @@ namespace UnlockAllWondersAndLandmarks
         {
             milestonesManager.UnlockMilestone("Basic Road Created");
 
+            UnlockBuidlingsIfFlagIsSet("unlockNaturalDisastersLandmarks", new[]{
+                //Natural Disasters
+                "Unicorn Park",
+                "Sphinx Of Scenarios",
+                "Pyramid Of Safety",
+                "Doomsday Vault",
+                "Disaster Memorial",
+                "Helicopter Park",
+                "Meteor Park"
+            });
+
+
             UnlockBuidlingsIfFlagIsSet("unlockSnowfallLandmarks", new[]{
                 //Snowfall
                 "Ice Hockey Arena",
