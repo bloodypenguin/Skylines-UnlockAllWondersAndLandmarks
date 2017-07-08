@@ -1,9 +1,9 @@
-﻿using System.Xml.Serialization;
-using UnlockAllWondersAndLandmarks.OptionsFramework;
+﻿using UnlockAllWondersAndLandmarks.OptionsFramework.Attibutes;
 
 namespace UnlockAllWondersAndLandmarks
 {
-    public class Options : IModOptions
+    [Options("UnlockAllWondersAndLandmarks.xml", "CSL-UnlockAllWondersAndLandmarks.xml")]
+    public class Options
     {
         public Options()
         {
@@ -31,8 +31,5 @@ namespace UnlockAllWondersAndLandmarks
 
         [Checkbox("Unlock Natural Disasters Landmarks (req. Natural Disasters DLC)")]
         public bool unlockNaturalDisastersLandmarks { set; get; }
-
-        [XmlIgnore]
-        public string FileName => "CSL-UnlockAllWondersAndLandmarks.xml";
     }
 }

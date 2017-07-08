@@ -1,5 +1,5 @@
 ﻿using ICities;
-using UnlockAllWondersAndLandmarks.OptionsFramework;
+using UnlockAllWondersAndLandmarks.OptionsFramework.Extensions;
 
 namespace UnlockAllWondersAndLandmarks
 {
