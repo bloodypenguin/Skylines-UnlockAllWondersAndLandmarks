@@ -11,7 +11,7 @@ namespace UnlockAllWondersAndLandmarks
         {
             milestonesManager.UnlockMilestone("Basic Road Created");
 
-            UnlockBuidlingsIfFlagIsSet("unlockNaturalDisastersLandmarks", new[]{
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockNaturalDisastersLandmarks), new[]{
                 //Natural Disasters
                 "Unicorn Park",
                 "Sphinx Of Scenarios",
@@ -23,7 +23,7 @@ namespace UnlockAllWondersAndLandmarks
             });
 
 
-            UnlockBuidlingsIfFlagIsSet("unlockSnowfallLandmarks", new[]{
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockSnowfallLandmarks), new[]{
                 //Snowfall
                 "Ice Hockey Arena",
                 "Sleigh Ride",
@@ -37,7 +37,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Igloo Hotel",
             });
 
-            UnlockBuidlingsIfFlagIsSet("unlockAfterDarkLandmarks", new[]{
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockAfterDarkLandmarks), new[]{
                 //After Dark
                 "Fancy Fountain",
                 "Casino",
@@ -46,7 +46,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Zoo",
             });
 
-            UnlockBuidlingsIfFlagIsSet("unlockDeluxeLandmarks", new[]{
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockDeluxeLandmarks), new[]{
                 //Deluxe
                 "Eiffel Tower",
                 "Statue of Liberty",
@@ -55,7 +55,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Arc de Triomphe",
             });
 
-            UnlockBuidlingsIfFlagIsSet("unlockWonders", new[]{
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockWonders), new[]{
                 //Wonders
                 "Hadron Collider",
                 "Medical Center",
@@ -64,7 +64,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Fusion Power Plant",
             });
 
-            UnlockBuidlingsIfFlagIsSet("unlockEuroLandmarks", new[]{
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockEuroLandmarks), new[]{
                 //European
                 "Arena",
                 "Shopping Center",
@@ -80,7 +80,7 @@ namespace UnlockAllWondersAndLandmarks
                 "Gherkin",
             });
 
-            UnlockBuidlingsIfFlagIsSet("unlockUniqueBuildings", new[]{
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockUniqueBuildings), new[]{
                 //UB-I
                 "Statue of Industry",
                 "Statue of Wealth",
@@ -117,6 +117,11 @@ namespace UnlockAllWondersAndLandmarks
                 "Modern Art Museum",
                 "SeaAndSky Scraper",
                 "Theater of Wonders",
+            });
+
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockMassTransitLandmarks), new[]
+            {
+                ""
             });
         }
 

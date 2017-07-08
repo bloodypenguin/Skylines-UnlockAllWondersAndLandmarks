@@ -28,8 +28,9 @@ namespace UnlockAllWondersAndLandmarks
         public bool unlockAfterDarkLandmarks { set; get; }
         [Checkbox("Unlock Snowfall Landmarks (req. Snowfall DLC + Winter biome/Winter Buildings Unlocker mod)")]
         public bool unlockSnowfallLandmarks { set; get; }
-
         [Checkbox("Unlock Natural Disasters Landmarks (req. Natural Disasters DLC)")]
         public bool unlockNaturalDisastersLandmarks { set; get; }
+        [Checkbox("Unlock Mass Transit Landmarks (req. Mass Transit DLC)")]
+        public bool unlockMassTransitLandmarks { set; get; }
     }
 }
