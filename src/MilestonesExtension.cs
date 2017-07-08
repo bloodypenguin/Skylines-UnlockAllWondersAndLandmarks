@@ -121,7 +121,9 @@ namespace UnlockAllWondersAndLandmarks
 
             UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockMassTransitLandmarks), new[]
             {
-                ""
+                "Boat Museum",
+                "Traffic Park",
+                "Steam Train"
             });
         }
 
