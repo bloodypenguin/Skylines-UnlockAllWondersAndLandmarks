@@ -125,6 +125,17 @@ namespace UnlockAllWondersAndLandmarks
                 "Traffic Park",
                 "Steam Train"
             });
+
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockGreenCitiesLandmarks), new[]
+            {
+                "Bird And Bee Haven",
+                "Floating Gardens",
+                "Central Park",
+                "Ziggurat Garden",
+                "Climate Research Station",
+                "Lungs of the City",
+                "Ultimate Recycling Plant"
+            });
         }
 
         private void UnlockBuidlingsIfFlagIsSet(string flag, IEnumerable<string> buildingNames)

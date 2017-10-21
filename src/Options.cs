@@ -14,6 +14,7 @@ namespace UnlockAllWondersAndLandmarks
             unlockAfterDarkLandmarks = false;
             unlockSnowfallLandmarks = false;
             unlockNaturalDisastersLandmarks = false;
+            unlockGreenCitiesLandmarks = false;
         }
 
         [Checkbox("Unlock Unique Buildings(levels I - VI)")]
@@ -32,5 +33,7 @@ namespace UnlockAllWondersAndLandmarks
         public bool unlockNaturalDisastersLandmarks { set; get; }
         [Checkbox("Unlock Mass Transit Landmarks (req. Mass Transit DLC)")]
         public bool unlockMassTransitLandmarks { set; get; }
+        [Checkbox("Unlock Green Cities Landmarks (req. Green Cities DLC)")]
+        public bool unlockGreenCitiesLandmarks { set; get; }
     }
 }
