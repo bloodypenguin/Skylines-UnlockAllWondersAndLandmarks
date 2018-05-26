@@ -15,8 +15,8 @@ namespace UnlockAllWondersAndLandmarks
             unlockSnowfallLandmarks = false;
             unlockNaturalDisastersLandmarks = false;
             unlockGreenCitiesLandmarks = false;
-            unlockConcertsLandmarks = true;
-            unlockParklifeLandmarks = true;
+            unlockConcertsLandmarks = false;
+            unlockParklifeLandmarks = false;
         }
 
         [Checkbox("Unlock Unique Buildings(levels I - VI)")]
