@@ -136,6 +136,65 @@ namespace UnlockAllWondersAndLandmarks
                 "Lungs of the City",
                 "Ultimate Recycling Plant"
             });
+
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockConcertsBuildings), new[]
+            {
+                "Music Club",
+                "Media Broadcast Building"
+            });
+
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockParkLifeBuildings), new[]
+            {
+                //City Park
+                "Park Chess Board #1",
+                "Park Pier #1",
+                "Park Pier #2",
+                "Gazebo #1",
+                "Gazebo #2",
+                "Climbing Fence #1",
+                "Trampoline Park #1",
+                //Amusement Park
+                "Piggy Train",
+                "Rotating Tea Cups",
+                "Swinging Boat",
+                "House Of Horrors",
+                "Bumber Cars",
+                "Drop Tower Ride",
+                "Pendulum Ride",
+                "Ferris Wheel",
+                "Rollercoaster",
+                //Zoo
+                "Bison Enclosure",
+                "Insect, Amphibian and Reptile House",
+                "Flamingo Enclosure",
+                "Elephant Enclosure",
+                "Sealife Enclosure",
+                "Giraffe Enclosure",
+                "Monkey Palace",
+                "Rhino Enclosure",
+                "Lion Enclosure",
+                //Nature Reserve
+                "Viewing Deck #1",
+                "Viewing Deck #2",
+                "Tent Camping Site #1",
+                "Lean-To Shelter #1",
+                "Lean-To Shelter #2",
+                "Lookout Tower #1",
+                "Lookout Tower #2",
+                "Fishing Cabin #1",
+                "Fishing Cabin #2",
+                "Hunting Cabin #1",
+                "Hunting Cabin #2",
+                "Bouldering Site #1",
+                //Monument
+                "Castle Of Lord Chirpwick",
+                //UB-III
+                "Old Market Street",
+                //UB-IV
+                "Sea Fortress",
+                //UB-VI
+                "The Statue of Colossalus"
+            });
         }
 
         private void UnlockBuidlingsIfFlagIsSet(string flag, IEnumerable<string> buildingNames)
