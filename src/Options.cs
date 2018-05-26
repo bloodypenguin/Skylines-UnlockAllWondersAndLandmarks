@@ -15,6 +15,8 @@ namespace UnlockAllWondersAndLandmarks
             unlockSnowfallLandmarks = false;
             unlockNaturalDisastersLandmarks = false;
             unlockGreenCitiesLandmarks = false;
+            unlockConcertsLandmarks = true;
+            unlockParklifeLandmarks = true;
         }
 
         [Checkbox("Unlock Unique Buildings(levels I - VI)")]
@@ -35,5 +37,9 @@ namespace UnlockAllWondersAndLandmarks
         public bool unlockMassTransitLandmarks { set; get; }
         [Checkbox("Unlock Green Cities Landmarks (req. Green Cities DLC)")]
         public bool unlockGreenCitiesLandmarks { set; get; }
+        [Checkbox("Unlock Concerts Landmarks (req. Concerts DLC)")]
+        public bool unlockConcertsLandmarks { set; get; }
+        [Checkbox("Unlock Parklife Landmarks (req. Parklife DLC)")]
+        public bool unlockParklifeLandmarks { set; get; }
     }
 }

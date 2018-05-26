@@ -136,6 +136,25 @@ namespace UnlockAllWondersAndLandmarks
                 "Lungs of the City",
                 "Ultimate Recycling Plant"
             });
+
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockConcertsLandmarks), new[]
+            {
+                "Festival Fan Zone",
+                "Broadcasting Studios",
+                "Live Music Venue",
+                "Festival Area",
+            });
+
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockParklifeLandmarks), new[]
+            {
+                "City Arch",
+                "Clock Tower",
+                "Old Market Street",
+                "Sea Fortress",
+                "Observation Tower",
+                "Statue Of Colossalus",
+                "Chirpwick Castle",
+            });
         }
 
         private void UnlockBuidlingsIfFlagIsSet(string flag, IEnumerable<string> buildingNames)
