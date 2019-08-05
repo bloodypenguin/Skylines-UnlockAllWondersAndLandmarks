@@ -211,6 +211,11 @@ namespace UnlockAllWondersAndLandmarks
                 "Theater of Wonders",
             });
 
+            UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockUniqueBuildings), new[]
+            {
+                "Academic Library"
+            }, "Prerequisites");
+
             if (managers.application.SupportsExpansion(Expansion.InMotion))
             {
                 UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockMassTransitLandmarks), new[]
@@ -245,7 +250,7 @@ namespace UnlockAllWondersAndLandmarks
             });
         }
 
-        private void UnlockBuidlingsIfFlagIsSet(string flag, IEnumerable<string> buildingNames)
+        private void UnlockBuidlingsIfFlagIsSet(string flag, IEnumerable<string> buildingNames, string suffix = "Requirements")
         {
             if (!(bool) typeof(Options).GetProperty(flag).GetValue(OptionsWrapper<Options>.Options, null))
             {
@@ -254,14 +259,14 @@ namespace UnlockAllWondersAndLandmarks
 
             foreach (var buildingName in buildingNames)
             {
-                UnlockBuilding(buildingName);
+                UnlockBuilding(buildingName, suffix);
             }
         }
 
 
-        private void UnlockBuilding(string buildingName)
+        private void UnlockBuilding(string buildingName, string suffix)
         {
-            var milestone = $"{buildingName} Requirements";
+            var milestone = $"{buildingName} {suffix}";
 
             if (milestonesManager.EnumerateMilestones().Contains(milestone))
             {
