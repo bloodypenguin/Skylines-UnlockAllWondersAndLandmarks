@@ -90,6 +90,16 @@ namespace UnlockAllWondersAndLandmarks
                 milestonesManager.UnlockMilestone("University Requirements 4");
                 milestonesManager.UnlockMilestone("University Requirements 5");
             }
+            
+            if (managers.application.SupportsExpansion(Expansion.Urban))
+            {
+                milestonesManager.UnlockMilestone("Fishing Boat Harbor 02 Requirements");
+                milestonesManager.UnlockMilestone("Fishing Boat Harbor 03 Requirements");
+                milestonesManager.UnlockMilestone("Fishing Boat Harbor 04 Requirements");
+                milestonesManager.UnlockMilestone("Fishing Boat Harbor 05 Requirements");
+                milestonesManager.UnlockMilestone("Fish Farm 02 Requirements");
+                milestonesManager.UnlockMilestone("Fish Farm 03 Requirements");
+            }
 
             if (managers.application.SupportsExpansion(Expansion.NaturalDisasters))
             {
@@ -213,7 +223,8 @@ namespace UnlockAllWondersAndLandmarks
 
             UnlockBuidlingsIfFlagIsSet(nameof(Options.unlockUniqueBuildings), new[]
             {
-                "Academic Library"
+                "Academic Library",
+                "Aviation Club",
             }, "Prerequisites");
 
             if (managers.application.SupportsExpansion(Expansion.InMotion))
